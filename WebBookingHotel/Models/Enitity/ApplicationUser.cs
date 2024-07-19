@@ -6,7 +6,7 @@ namespace WebBookingHotel.Models.Enitity
     {
         public string fullname { get; set; }
 
-        public string address { get; set; }
+        public string address { get; set; } 
 
         public string Country { get; set; }
     }
