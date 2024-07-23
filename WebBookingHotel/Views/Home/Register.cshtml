@@ -69,6 +69,11 @@
             color: aqua;
         }
 
+       
+        a{
+            cursor:pointer;
+        }
+
         #ModalLogin .main .box .submit-btn {
             display: flex;
             align-items: center;
@@ -83,31 +88,10 @@
             color: #fff;
         }
 
-        #ModalLogin .main .box1 .submit-btn {
-            margin-top:10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: normal;
-            height: 50px;
-            border-radius: 5px;
-            background: red;
-            font-weight: 700;
-            font-size: 18px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        .submitRegister{
-            color: orange !important;
-            transition: .3s;
-        }
         #ModalLogin .main .nav-tabs a.active {
             border-bottom: 4px solid blue;
         }
 
-        a.submitRegister.submit-btn {
-            color: orange;
-        }
         .submitLogin:hover {
             background-color: aqua !important;
             border: 1px solid aqua !important;
@@ -116,18 +100,6 @@
 
         .submitLogin {
             color: aqua !important;
-            -webkit-transition: .3s;
-            transition: .3s;
-        }
-
-            .submitRegister:hover {
-                background-color: orange !important;
-                border: 1px solid orange !important;
-                color: red !important;
-            }
-
-        .submitRegister {
-            color: orange !important;
             -webkit-transition: .3s;
             transition: .3s;
         }
@@ -189,7 +161,7 @@
 
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active">
-                                        <a href="#Log" aria-controls="home" role="tab" data-toggle="tab" class="active">Đăng nhập / Login</a>
+                                        <a href="#Log" aria-controls="home" role="tab" data-toggle="tab" class="active">Đăng ký / Register</a>
                                     </li>
                                     <li role="presentation">
                                         <a href="#Res" aria-controls="profile" role="tab" data-toggle="tab"></a>
@@ -198,6 +170,22 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active show" id="Log">
                                         <form action="" method="post" class="frmLogin" id="frmLogin">
+                                            <div class="box">
+                                                <div class="svg">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-6 2.69-6 6v2h12v-2c0-3.31-2.69-6-6-6z" fill="#3C3C3B" />
+                                                    </svg>
+                                                </div>
+
+                                                <input id="log_name" name="log_name" type="text" class="form-control" placeholder="Full Name">
+                                            </div>
+                                            <div class="box">
+                                                <div class="svg">
+                                                    <img src="~/img/call_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Description of SVG" width="20" height="20">
+
+                                                </div>
+                                                <input id="log_name" name="log_name" type="text" class="form-control" placeholder="Phone">
+                                            </div>
                                             <div class="box">
                                                 <div class="svg">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -221,24 +209,42 @@
                                             </div>
                                             <div class="box box-flex">
                                                 <label class="check-box d-flex align-items-center" for="log_save">
-                                                    <span class="checkmark"></span>
-                                                    <input type="checkbox" name="log_save" id="log_save" value="true">
-                                                    <span class="ms-2">Ghi nhớ tài khoản</span>
+                                                  
                                                 </label>
-                                              
-                                                 <a title="Quên mật khẩu?" class="forgot-password">
-                                                    Quên mật khẩu?
-                                                </a>
+
+                                                <span>
+                                                    Bạn đã có tài khoản?<a title="Đăng nhập" class="loginlink" href="@Url.Action("Login", "Home")" style="text-decoration:none">
+                                                        Đăng nhập
+                                                    </a>
+                                                </span>
                                             </div>
                                             <div class="box">
-                                                <a href="javascript:void(0)" class="submitLogin submit-btn">Đăng nhập / login</a>
-                                            </div>
-                                             <div class="box1">
-                                                <a href="@Url.Action("Register","Home")" class="submitRegister  submit-btn">Đăng ký / Register</a>
+                                                <a href="javascript:void(0)" class="submitLogin submit-btn">Đăng ký / Register</a>
                                             </div>
                                         </form>
                                     </div>
-                                  
+                                    <div role="tabpanel" class="tab-pane fade" id="Res">
+                                        <form action="" method="post" class="frmRegister" id="frmRegister">
+                                            <div class="box">
+                                                <input id="res_email" name="res_email" type="text" class="form-control" placeholder="Email *">
+                                            </div>
+                                            <div class="box">
+                                                <input id="res_name" name="res_name" type="text" class="form-control" placeholder="Họ tên *">
+                                            </div>
+                                            <div class="box">
+                                                <input id="res_pass" name="res_pass" type="password" class="form-control" placeholder="Mật khẩu *">
+                                            </div>
+                                            <div class="box">
+                                                <input id="res_pass_re" name="res_pass_re" type="password" class="form-control" placeholder="Nhập lại mật khẩu *">
+                                            </div>
+                                            <div class="box">
+                                                <div id="res_captcha" class="g-recaptcha" data-sitekey="6LeAKDsaAAAAALJDDw7m8MPOgQlHofn3FQxWTYU8" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                                            </div>
+                                            <div class="box">
+                                                <a href="javascript:void(0)" class="submitRegister submit-btn">Đăng ký</a>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -266,10 +272,10 @@
                     <div class="main">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active">
-                                <a href="#Log" aria-controls="home" role="tab" data-toggle="tab" class="active">Đăng nhập</a>
+                                <a href="#Log" aria-controls="home" role="tab" data-toggle="tab" class="active">Đăng ký</a>
                             </li>
                             <li role="presentation">
-                               
+                                <a href="#Res" aria-controls="profile" role="tab" data-toggle="tab">Đăng ký</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -289,7 +295,6 @@
                                         <a href="https://booking.muongthanh.com/quen-mat-khau" title="Quên mật khẩu?" class="forgot-password">
                                             Quên mật khẩu?
                                         </a>
-                        
                                     </div>
                                     <div class="box">
                                         <a href="javascript:void(0)" class="submitLogin submit-btn">Đăng nhập</a>
@@ -314,7 +319,7 @@
                                         <div id="res_captcha" class="g-recaptcha" data-sitekey="6LeAKDsaAAAAALJDDw7m8MPOgQlHofn3FQxWTYU8" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
                                     </div>
                                     <div class="box">
-                                        <a href="@Url.Page("/Register")" class="submitRegister submit-btn">Đăng ký</a>
+                                        <a href="javascript:void(0)" class="submitRegister submit-btn">Đăng ký</a>
                                     </div>
                                 </form>
                             </div>
@@ -387,4 +392,3 @@
     <script language="javascript" type="text/javascript" src="https://booking.muongthanh.com/templates/default/js/template.js?v=1.76"></script>
 </body>
 </html>
- 
