@@ -19,5 +19,6 @@ namespace WebBookingHotel.Areas.Admin.Controllers
         {
             return View();
         }
+
     }
 }
