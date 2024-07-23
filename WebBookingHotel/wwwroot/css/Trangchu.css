@@ -1335,9 +1335,9 @@ select:not([multiple])::-ms-expand {
 }
 
     .c-logo img {
-        width: auto;
-        height: auto;
-        max-height: 48px;
+        width: 100px;
+        height: 100px;
+        max-height: 100px;
     }
 
     .c-logo .c-logo__active {
@@ -1520,7 +1520,7 @@ select:not([multiple])::-ms-expand {
     }
 
         .c-logo img {
-            max-height: 100px;
+            max-height: 00px;
         }
 
     .c-nav-left > ul > li {
@@ -16024,6 +16024,7 @@ input[type="text"]::-webkit-input-placeholder {
 .sticky .c-logo__normal {
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    max-height: 100px;
 }
 
 .fix-height {
@@ -16033,12 +16034,18 @@ input[type="text"]::-webkit-input-placeholder {
     .fix-height .c-logo__normal {
         -webkit-transition: 0.3s;
         transition: 0.3s;
-        max-height: 50px;
+        max-height: 100px;
     }
 
 @media screen and (max-width: 768px) {
     #search {
         width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .c-logo img {
+        margin-top: -50px;
+        max-height: 250px;
     }
 }
 

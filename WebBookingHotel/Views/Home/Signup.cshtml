@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Tài Khoản</title>
+    <link rel="stylesheet" href="~/css/signup.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng Ký Tài Khoản</h2>
+
+        <form class="register-form">
+            <div class="form-group">
+                <label for="fullname">Tên đầy đủ</label>
+                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Nhập tên đầy đủ" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address" class="form-control" placeholder="Nhập địa chỉ" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Country">Quốc gia</label>
+                <input type="text" id="Country" name="Country" class="form-control" placeholder="Nhập quốc gia" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="UserName">Tên đăng nhập</label>
+                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Nhập tên đăng nhập" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Mật khẩu</label>
+                <input type="password" id="Password" name="Password" class="form-control" placeholder="Nhập mật khẩu" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="EnterPassword">Nhập lại mật khẩu</label>
+                <input type="password" id="EnterPassword" name="EnterPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" placeholder="Nhập địa chỉ email" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone">Số điện thoại</label>
+                <input type="tel" id="Phone" name="Phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Role">Vai trò</label>
+                <input type="text" id="Role" name="Role" class="form-control" placeholder="Nhập vai trò" value="customer" required>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
