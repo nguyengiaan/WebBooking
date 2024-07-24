@@ -21,9 +21,8 @@ builder.Services.AddDbContext<MyDbcontext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MyDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IKhachsan, KhachsanReponser>();
 builder.Services.AddScoped<INguoidung, NguoidungReponser>();
-builder.Services.AddScoped<ITangkhachsan, TangkhachsanReponser>();
-builder.Services.AddScoped<ILoaiphong, LoaiphongReponser>();
 var app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

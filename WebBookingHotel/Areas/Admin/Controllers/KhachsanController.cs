@@ -5,7 +5,6 @@ using WebBookingHotel.Service.IResponser;
 
 namespace WebBookingHotel.Areas.Admin.Controllers
 {
-    [Area("Admin")]
     public class KhachsanController : Controller
     {
         private readonly IKhachsan _khachsan;
@@ -37,27 +36,6 @@ namespace WebBookingHotel.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Danhsachkhachsan()
-        {
-            try
-            {
-                var data = await _khachsan.DanhSachKhachsan();
-                if(data != null)
-                {
-                    return Json(new { success = true, data = data });
-                }
-                else
-                {
-                    return Json(new { success = false, message = "Không có dữ liệu" });
-                }
-            }
-            catch(Exception ex)
-            {
-                 return Json(new { success = false, message = ex.Message });
             }
         }
     }

@@ -6,6 +6,5 @@ namespace WebBookingHotel.Service.IResponser
     public interface IKhachsan
     {
         public Task<Boolean> ThemKhachsans(KhachsanVM khachsan);
-        public Task<List<KhachsanVM>> DanhSachKhachsan();
     }
 }

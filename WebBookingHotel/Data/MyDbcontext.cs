@@ -42,8 +42,7 @@ namespace WebBookingHotel.Data
             modelBuilder.Entity<Tangkhachsan>().Property(e => e.Sophong);
             modelBuilder.Entity<Tangkhachsan>().Property(e => e.Ghichu).HasMaxLength(int.MaxValue);
             modelBuilder.Entity<Tangkhachsan>().Property(e => e.Trangthai).HasMaxLength(int.MaxValue);
-            modelBuilder.Entity<Tangkhachsan>().HasOne(e => e.Khachsan).WithMany(e => e.Tangkhachsans).HasForeignKey(x => x.Ma_Khachsan);
-
+         
             //table phong
             modelBuilder.Entity<Phong>().ToTable("Phong").HasKey(e => e.Ma_Phong);
             modelBuilder.Entity<Phong>().Property(e => e.Ten_Phong).HasMaxLength(int.MaxValue);

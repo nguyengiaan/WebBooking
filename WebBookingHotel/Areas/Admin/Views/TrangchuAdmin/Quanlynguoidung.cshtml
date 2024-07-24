@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "_LayoutAdmin";
 }
-@model WebBookingHotel.Models.EnityVM.TaikhoanVM;
 <div class="modal fade" id="Themtaikhoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -15,57 +14,44 @@
             
                 <form method="post" id="formThemtaikhoan" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-form-label">Họ và tên</label>
-                        <input asp-for="fullname" type="text" class="form-control" id="fullname">
+                        <label class="col-form-label">Tên khách sạn</label>
+                        <input type="text" class="form-control" id="tenkhachsan">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label" >Email</label>
-                        <input asp-for="Email" type="email" class="form-control" id="Email">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Tên tài khoản</label>
-                        <input asp-for="UserName" type="text" class="form-control" id="UserName">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Mật khẩu tài khoản</label>
-                        <input asp-for="Password" type="text" class="form-control" id="Password">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Xác nhận mật khẩu</label>
-                        <input asp-for="EnterPassword" type="text" class="form-control" id="Password">
+                        <label class="col-form-label">Số lượng phòng</label>
+                        <input type="number" class="form-control" id="dongia">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Địa chỉ</label>
-                        <input asp-for="address" type="text" class="form-control" id="address">
+                        <input type="text" class="form-control" id="diachi">
+
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Số điện thoại</label>
-                        <input asp-for="Phone" type="text" class="form-control" id="Phone">
-                    </div>
-           
-                    <div class="form-group">
-                        <label class="col-form-label">Quyền</label>
-                        <select class="form-select" aria-label="Default select example" asp-for="Role" id="Role">
-                            <option value="Admin">Admin</option>
-                            <option value="Customer">Customer</option>
-                            <option value="Staff">Staff</option>
-                        </select>
+                        <input type="text" class="form-control" id="sdt">
+
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Quốc gia</label>
-                        <select class="form-select" aria-label="Default select example" asp-for="Country" id="Role">
-                            <option value="Việt Nam">Việt Nam</option>
-                            <option value="Hàn Quốc">Hàn Quốc</option>
-                            <option value="Mỹ">Mỹ</option>
-                        </select>
+                        <label class="col-form-label">Website</label>
+                        <input type="text" class="form-control" id="Website">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ghi chú</label>
+                        <input type="text" class="form-control" id="Website">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ngày tạo</label>
+                        <input type="date" class="form-control" id="Website">
+
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="submitBtntk">Thêm tài khoản</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
-            </div> 
-           
+                <button type="submit" class="btn btn-primary" id="submitBtndv">Thêm dịch vụ</button>
+            </div>
 
         </div>
     </div>
@@ -77,10 +63,10 @@
         <div class="card-header py-3  ">
             <div class="row">
                 <div class="col-md-10 col-12">
-                    <h4 class="m-0 font-weight-bold text-primary">Danh sách tài khoản</h4>
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách khách sạn</h4>
                 </div>
                 <div class="col-md-2 col-12">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#Themtaikhoan"> <span class="fs-20">Thêm tài khoản</span> </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#Themkhachsan"> <span class="fs-20">Thêm khách sạn</span> </button>
                 </div>
             </div>
         </div>
@@ -134,61 +120,3 @@
         </div>
     </div>
 </div>
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $('#submitBtntk').click(function () {
-                themtaikhoan();
-            });
-
-            function themtaikhoan() {
-                var form = $('#formThemtaikhoan')[0];
-                var data = new FormData(form);
-                $.ajax({
-                    url: '/Nguoidung/Dangkythanhvien',
-                    type: 'POST',
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    beforeSend: function () {
-                        Swal.fire({
-                            title: "Loading...",
-                            text: "Please wait",
-                            imageUrl: "https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
-                            imageWidth: 100,
-                            imageHeight: 100,
-                            imageAlt: "Loading",
-                            allowOutsideClick: false,
-                            showConfirmButton: false,
-                        });
-                    },
-                    success: function (res) {
-                        if (res.success == true) {
-                            Swal.fire({
-                                title: "Thêm tài khoản",
-                                text: res.message, // Sửa 'response.message' thành 'res.message'
-                                icon: "success"
-                            });
-                            $('#Themtaikhoan').modal('hide');
-                            form.reset();
-                        } else {
-                            Swal.fire({
-                                title: "Thêm tài khoản",
-                                text: res.message, // Sửa 'response.message' thành 'res.message'
-                                icon: "error"
-                            });
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        Swal.fire({
-                            title: "Lỗi",
-                            text: "Đã xảy ra lỗi trong quá trình xử lý.",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-        });
-
-    </script>
-}

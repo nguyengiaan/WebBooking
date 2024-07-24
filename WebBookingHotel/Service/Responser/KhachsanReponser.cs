@@ -14,33 +14,6 @@ namespace WebBookingHotel.Service.Responser
         {
             _context = context;
         }
-
-        public async Task<List<KhachsanVM>> DanhSachKhachsan()
-        {
-            try 
-            {
-                List<KhachsanVM> khachsan = await _context.Khachsan.Select(x => new KhachsanVM()
-                {
-                    Ma_Khachsan = x.Ma_Khachsan,
-                    Ten_Khachsan = x.Ten_Khachsan,
-                    Soluongtang = x.Soluongtang,
-                    Soluongphong = x.Soluongphong,
-                    Diachi = x.Diachi,
-                    SDT = x.SDT,
-                    Email = x.Email,
-                    Website = x.Website,
-                    Ghichu = x.Ghichu,
-                    ngaytao = x.ngaytao,
-                    Id = x.Id
-                }).ToListAsync();
-                return khachsan;
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
-        }
-
         public async Task<Boolean> ThemKhachsans(KhachsanVM khachsan)
         {
             try
@@ -78,7 +51,5 @@ namespace WebBookingHotel.Service.Responser
             }
 
         }
-
-        
     }
 }

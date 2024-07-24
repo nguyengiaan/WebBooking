@@ -664,9 +664,13 @@ namespace WebBookingHotel.Migrations
                         .HasMaxLength(2147483647)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ma_Khachsan")
+                    b.Property<string>("KhachsanMa_Khachsan")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Ma_Khachsan")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sophong")
                         .HasColumnType("int");
@@ -683,7 +687,7 @@ namespace WebBookingHotel.Migrations
 
                     b.HasKey("Ma_Tang");
 
-                    b.HasIndex("Ma_Khachsan");
+                    b.HasIndex("KhachsanMa_Khachsan");
 
                     b.ToTable("Tangkhachsan", (string)null);
                 });
@@ -864,7 +868,7 @@ namespace WebBookingHotel.Migrations
                 {
                     b.HasOne("WebBookingHotel.Models.Enitity.Khachsan", "Khachsan")
                         .WithMany("Tangkhachsans")
-                        .HasForeignKey("Ma_Khachsan")
+                        .HasForeignKey("KhachsanMa_Khachsan")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
