@@ -1,130 +1,4 @@
 ﻿@{
-<<<<<<< HEAD
-    Layout = "~/Views/Shared/_Layout_Booking.cshtml";
-}
-
-<body class="mm-wrapper">
-    <nav id="sideMenuMobile"
-         class="mm-menu mm-menu_offcanvas mm-menu_position-left"
-         aria-hidden="true">
-        <div class="mm-navbars_top">
-            <div class="mm-navbar">
-                <img style="width: 50px; height: 50px"
-                     src="https://booking.muongthanh.com/images/config/logo_1650360911.svg" />
-            </div>
-            <div class="mm-navbar">
-                <a class="mm-btn mm-btn_prev mm-navbar__btn mm-hidden"
-                   aria-hidden="true"></a><a class="mm-navbar__title"><span>Mường Thanh Hospitality</span></a>
-            </div>
-        </div>
-
-        <div class="mm-panels">
-            <div class="mainmenu mainmenu-megamenu_moblie not_home mm-panel mm-panel_opened"
-                 id="mm-1">
-                <div class="mm-navbar mm-navbar_sticky mm-hidden" aria-hidden="true">
-                    <a class="mm-navbar__title"><span>Mường Thanh Hospitality</span></a>
-                </div>
-
-                <ul id="navmenu-v2" class="ul-header mm-listview">
-                    <li class="li_header level_1 _home mm-listitem">
-                        <a class="actives mm-listitem__text"
-                           title="Mường Thanh Hospitality"
-                           href="https://booking.muongthanh.com/"
-                           rel="nofollow">Trang chủ</a>
-                    </li>
-                    <li class="li_header level0 first-item menu-item mm-listitem">
-                        <a class="a_nav mm-listitem__text"
-                           href="https://booking.muongthanh.com/diem-den"
-                           data-target="#">Điểm đến</a>
-                    </li>
-                    <li class="li_header level0 menu-item mm-listitem">
-                        <a class="a_nav mm-listitem__text"
-                           href="https://booking.muongthanh.com/uu-dai"
-                           data-target="#">Ưu đãi</a>
-                    </li>
-                    <li class="li_header level0 last-item mm-listitem">
-                        <a class="a_nav mm-listitem__text"
-                           href="https://booking.muongthanh.com/combo-gia-tot"
-                           data-target="#">Combo</a>
-                    </li>
-                    <li class="li_header level0 menu-item mm-listitem">
-                        <a class="a_nav mm-listitem__text"
-                           href="https://booking.muongthanh.com/tin-tuc"
-                           data-target="#">Tin tức</a>
-                    </li>
-                    <li class="li-mb-lang mm-listitem">
-                        <span class="dropdown drop-lang-mb mm-listitem__text">
-                            <a type="button"
-                               id="dropMbLangBtn"
-                               data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <img src="https://booking.muongthanh.com/images/language_vn.svg"
-                                     alt="VI"
-                                     class="img-responsive" />
-                                <span>Vi</span>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropMbLangBtn">
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="https://booking.muongthanh.com/">
-                                        <img src="https://booking.muongthanh.com/images/language_vn.svg"
-                                             alt="VI"
-                                             class="img-responsive" />
-                                        <span>Vi</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="https://booking.muongthanh.com/en">
-                                        <img src="https://booking.muongthanh.com/images/language_en.svg"
-                                             alt="VI"
-                                             class="img-responsive" />
-                                        <span>En</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </span>
-                    </li>
-                    <li class="li-mob-social mm-listitem">
-                        <a href="tel:1900 1833" id="hotline" class="mm-listitem__text"><img src="/images/hotline.svg" alt="" />1900 1833</a>
-                        <a href="https://www.facebook.com/fan.muongthanh"
-                           id="fb"
-                           class="mm-listitem__text">
-                            <img src="/images/facebook.svg" alt="" />
-                        </a>
-                        <a href="https://www.instagram.com/muongthanh.hospitality/"
-                           id="insta"
-                           class="mm-listitem__text">
-                            <img src="/images/instagram.svg" alt="" />
-                        </a>
-                        <a href="https://www.youtube.com/channel/UC5o0Ixg2ppx0bv3oLWBCDLQ"
-                           id="yt"
-                           class="mm-listitem__text">
-                            <img src="/images/youtube.svg" alt="" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDXDG6Z"
-                height="0"
-                width="0"
-                style="display: none; visibility: hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
-
-    <input type="hidden"
-           id="alert_member"
-           value='["B\u1ea1n ch\u01b0a nh\u1eadp h\u1ecd t\u00ean","B\u1ea1n ch\u01b0a nh\u1eadp m\u1eadt kh\u1ea9u","B\u1ea1n ch\u01b0a nh\u1eadp email","Email kh\u00f4ng \u0111\u00fang \u0111\u1ecbnh d\u1ea1ng","B\u1ea1n ch\u01b0a nh\u1eadp m\u1eadt kh\u1ea9u","Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u","M\u1eadt kh\u1ea9u ch\u01b0a \u0111\u00fang, vui l\u00f2ng nh\u1eadp l\u1ea1i","B\u1ea1n ch\u01b0a x\u00e1c nh\u1eadn Captcha","M\u1eadt kh\u1ea9u c\u00f3 \u00edt nh\u1ea5t 6 k\u00fd t\u1ef1","B\u1ea1n ch\u01b0a ch\u1ecdn \u0111\u1ee7 s\u1ed1 ph\u00f2ng. B\u1ea1n c\u00f3 mu\u1ed1n ti\u1ebfp t\u1ee5c?","B\u1ea1n \u0111\u00e3 ch\u1ecdn qu\u00e1 s\u1ed1 ph\u00f2ng. B\u1ea1n c\u00f3 mu\u1ed1n ti\u1ebfp t\u1ee5c?","B\u1ea1n ch\u01b0a ch\u1ecdn \u0111\u1ecba \u0111i\u1ec3m"]' />
-    <div class="mm-page mm-slideout" id="mm-0">
-        <div id="page">
-         
-=======
     Layout = "~/Views/Shared/_BookingLayout.cshtml";
 }
 
@@ -244,12 +118,13 @@
     <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <style>
-        body{
-            width:100%;
-            height:100%;
-            padding:0;
-            margin:0;
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
+
         .owl-carousel .item {
             width: 387px; /* Thay đổi giá trị này để điều chỉnh kích thước item */
             /* Thay đổi các thuộc tính khác nếu cần */
@@ -360,7 +235,6 @@
 <body class="mm-wrapper">
     <div class="mm-page mm-slideout" id="mm-0">
         <div id="page">
->>>>>>> a762877fd1b1f8bd1e9a29e2f9d5a1489417b0b1
             <main>
                 <div class="block-banners banner-mb-full">
                     <div class="slide-banner owl-carousel owl-theme slide-mobile owl-loaded owl-drag">
@@ -4552,4 +4426,3 @@
             src="https://td.doubleclick.net/td/rul/10876052277?random=1721424087675&amp;cv=11&amp;fst=1721424087675&amp;fmt=3&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45be47h0z8830325525za201zb830325525&amp;gcd=13l3l3l3l1&amp;dma=0&amp;tag_exp=0&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fbooking.muongthanh.com%2F&amp;ref=https%3A%2F%2Fbooking.muongthanh.com%2F&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=%C4%90%E1%BA%B7t%20ph%C3%B2ng%20h%E1%BB%87%20th%E1%BB%91ng%20kh%C3%A1ch%20s%E1%BA%A1n%20M%C6%B0%E1%BB%9Dng%20Thanh&amp;npa=0&amp;pscdl=noapi&amp;auid=1696795031.1721421134&amp;uaa=x86&amp;uab=64&amp;uafvl=Not%252FA)Brand%3B8.0.0.0%7CChromium%3B126.0.6478.183%7CGoogle%2520Chrome%3B126.0.6478.183&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;fledge=1"
             style="display: none; visibility: hidden"></iframe>
 </body>
-</html>
