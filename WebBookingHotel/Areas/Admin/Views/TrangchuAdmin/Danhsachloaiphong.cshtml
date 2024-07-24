@@ -1,0 +1,114 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+@model WebBookingHotel.Models.EnityVM.LoaiphongVM
+<div class="modal fade" id="Themkhachsan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm loại phòng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formthemtang" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="Id" value="03693100-d270-47de-a2e2-c03cd32255f4">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tên Loại phòng</label>
+                        <input asp-for="Ten_loaiphong" type="text" class="form-control" id="Ten_loaiphong">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số giường ngủ</label>
+                        <input asp-for="Sogiuong" type="number" class="form-control" id="Sogiuong">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số người</label>
+                        <input asp-for="Songuoi" type="text" class="form-control" id="Songuoi">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Giá theo ngày</label>
+                        <input asp-for="Giatheongay" type="number" class="form-control" id="Giatheongay">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Giá theo giờ</label>
+                        <input asp-for="Giatheogio" type="number" class="form-control" id="Giatheogio">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Giá theo tháng</label>
+                        <input asp-for="Giatheothang" type="number" class="form-control" id="Giatheothang">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ghi chú</label>
+                        <input asp-for="Ghichu" type="number" class="form-control" id="Giatheothang">
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
+                <button type="submit" class="btn btn-primary" id="submitTang">Thêm tầng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3  ">
+            <div class="row">
+                <div class="col-md-10 col-12">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách loại phòng</h4>
+                </div>
+                <div class="col-md-2 col-12">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#Themkhachsan"> <span class="fs-20">Thêm tầng khách sạn</span> </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên loại phòng</th>
+                            <th>Số giường</th>
+                            <th>Ghi người</th>
+                            <th>Giá theo ngày</th>
+                            <th>Giá theo giờ</th>
+                            <th>Giá theo tháng</th>
+                            <th>Ghi chú</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên loại phòng</th>
+                            <th>Số giường</th>
+                            <th>Ghi người</th>
+                            <th>Giá theo ngày</th>
+                            <th>Giá theo giờ</th>
+                            <th>Giá theo tháng</th>
+                            <th>Ghi chú</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

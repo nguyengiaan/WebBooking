@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebBookingHotel.Data;
 
@@ -11,9 +12,10 @@ using WebBookingHotel.Data;
 namespace WebBookingHotel.Migrations
 {
     [DbContext(typeof(MyDbcontext))]
-    partial class MyDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20240723145628_up6")]
+    partial class up6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -666,7 +668,7 @@ namespace WebBookingHotel.Migrations
 
                     b.Property<string>("Ma_Khachsan")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sophong")
                         .HasColumnType("int");
@@ -682,8 +684,6 @@ namespace WebBookingHotel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Ma_Tang");
-
-                    b.HasIndex("Ma_Khachsan");
 
                     b.ToTable("Tangkhachsan", (string)null);
                 });
@@ -864,7 +864,7 @@ namespace WebBookingHotel.Migrations
                 {
                     b.HasOne("WebBookingHotel.Models.Enitity.Khachsan", "Khachsan")
                         .WithMany("Tangkhachsans")
-                        .HasForeignKey("Ma_Khachsan")
+                        .HasForeignKey("Ma_Tang")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

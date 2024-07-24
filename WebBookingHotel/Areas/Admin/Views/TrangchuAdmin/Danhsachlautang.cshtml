@@ -1,0 +1,222 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+@model WebBookingHotel.Models.EnityVM.TangkhachsanVM
+<div class="modal fade" id="Themkhachsan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm tầng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formthemtang" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="Id" value="03693100-d270-47de-a2e2-c03cd32255f4">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tên Tầng</label>
+                        <input asp-for="Ten_Tang" type="text" class="form-control" id="Ten_Tang">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số lượng phòng</label>
+                        <input asp-for="Sophong" type="number" class="form-control" id="Sophong">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ghi chú</label>
+                        <input asp-for="Ghichu" type="text" class="form-control" id="Ghichu">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Trạng thái</label>
+                        <input asp-for="Trangthai" type="text" class="form-control" id="Trangthai">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Khách sạn</label>
+                        <select class="form-select" aria-label="Default select example" asp-for="Ma_Khachsan" id="Ma_Khachsan">
+                        
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
+                <button type="submit" class="btn btn-primary" id="submitTang">Thêm tầng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Danh sách khách sạn-->
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3  ">
+            <div class="row">
+                <div class="col-md-10 col-12">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách lầu tầng</h4>
+                </div>
+                <div class="col-md-2 col-12">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#Themkhachsan"> <span class="fs-20">Thêm tầng khách sạn</span> </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên tầng</th>
+                            <th>Số phòng</th>
+                            <th>Ghi chú</th>
+                            <th>Trạng thái</th>
+                            <th>Tên khách sạn</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên tầng</th>
+                            <th>Số phòng</th>
+                            <th>Ghi chú</th>
+                            <th>Trạng thái</th>
+                            <th>Tên khách sạn</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+            danhsachkhachsan();
+            Danhsachtang();
+            $(document).on('click', '#submitTang', function () {
+                Themtang();
+            });
+        });
+        function danhsachkhachsan() {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Khachsan/Danhsachkhachsan",
+                success: function (response) {
+                    if (response.success) {
+                        var data = response.data;
+                        var html = "";
+                        console.log(data);
+                        $.each(data, function (i, item) {
+                            html += `<option value="${item.ma_Khachsan}" >${item.ten_Khachsan} </option>`;
+                        });
+                        $("#Ma_Khachsan").html(html);
+                    } else {
+                        Swal.fire({
+                            title: "Danh sách khách sạn",
+                            text: response.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Lỗi",
+                        text: `Lỗi: ${error}. Mã trạng thái: ${xhr.status}`,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+        function Themtang()
+        {
+            var form = $("#formthemtang")[0];
+            var data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Tangkhachsan/Themtang",
+                data: data,
+                contentType: false, // Thêm dòng này
+                processData: false, // và dòng
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Thêm tầng",
+                            text: response.message,
+                            icon: "success"
+                        });
+                        $("#Themkhachsan").modal('hide');
+                        form.reset();
+                        Danhsachtang();
+                    
+                    } else {
+                        Swal.fire({
+                            title: "Thêm tầng",
+                            text: response.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Lỗi",
+                        text: `Lỗi: ${error}. Mã trạng thái: ${xhr.status}`,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+        function Danhsachtang() 
+        { 
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Tangkhachsan/Danhsachtang",
+                success: function (response) {
+                    if (response.success) {
+                        var data = response.data;
+                        var html = "";
+                        console.log(data);
+                        $.each(data, function (i, item) {
+                            html += `<tr>
+                                <td>${i + 1}</td>
+                                <td>${item.ten_Tang}</td>
+                                <td>${item.sophong}</td>
+                                <td>${item.ghichu}</td>
+                                <td>${item.trangthai}</td>
+                                <td>${item.ten_Khachsan}</td>
+                                <td><button class="btn btn-danger" onclick="xoatang('${item.id}')">Xóa</button></td>
+                                <td><button class="btn btn-primary" onclick="suatang('${item.id}')">Sửa</button></td>
+                            </tr>`;
+                        });
+                        $("#dataTable tbody").html(html);
+                    } else {
+                        Swal.fire({
+                            title: "Danh sách tầng",
+                            text: response.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Lỗi",
+                        text: `Lỗi: ${error}. Mã trạng thái: ${xhr.status}`,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+    </script>
+}   

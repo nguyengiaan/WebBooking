@@ -19,6 +19,13 @@ namespace WebBookingHotel.Areas.Admin.Controllers
         {
             return View();
         }
-
+        public IActionResult Danhsachlautang()
+        {
+            return View();
+        }
+        public IActionResult Danhsachloaiphong()
+        {
+            return View();
+        }
     }
 }
