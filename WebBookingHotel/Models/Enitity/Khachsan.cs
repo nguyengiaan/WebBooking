@@ -17,9 +17,7 @@
         public string Ghichu { get; set; }
         public DateTime ngaytao { get; set; }
         public string Id { get; set; }
-
         public ApplicationUser user { get; set; }
-
         public List<Tangkhachsan> Tangkhachsans { get; set; }
 
 

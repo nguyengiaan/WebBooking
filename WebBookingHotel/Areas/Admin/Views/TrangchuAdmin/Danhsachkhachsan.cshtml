@@ -1,0 +1,231 @@
+﻿@{
+    Layout="_LayoutAdmin";
+}
+@model WebBookingHotel.Models.EnityVM.KhachsanVM;
+<div class="modal fade" id="Themkhachsan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm khách sạn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="loadingSpinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1050;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" id="formthemkhachsan" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="Id" value="03693100-d270-47de-a2e2-c03cd32255f4">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tên khách sạn</label>
+                        <input asp-for="Ten_Khachsan" type="text" class="form-control" id="Ten_Khachsan">
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số lượng phòng</label>
+                        <input asp-for="Soluongphong" type="number" class="form-control" id="Soluongphong">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Địa chỉ</label>
+                        <input asp-for="Diachi" type="text" class="form-control" id="Diachi">
+                  
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số điện thoại</label>
+                        <input asp-for="SDT" type="text" class="form-control" id="SDT">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Website</label>
+                        <input asp-for="Website" type="text" class="form-control" id="Website">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Email</label>
+                        <input asp-for="Email" type="text" class="form-control" id="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ghi chú</label>
+                        <input asp-for="Ghichu" type="text" class="form-control" id="Ghichu">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Ngày tạo</label>
+                        <input asp-for="ngaytao" type="date" class="form-control" id="Website">
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
+                <button type="submit" class="btn btn-primary" id="submitBtnks">Thêm khách sạn</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Danh sách khách sạn-->
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3  ">
+            <div class="row">
+                <div class="col-md-10 col-12">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách khách sạn</h4>
+                </div>
+                <div class="col-md-2 col-12">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#Themkhachsan"> <span class="fs-20">Thêm khách sạn</span> </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên khách sạn</th>
+                            <th>Số lượng phòng</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Ghi chú</th>
+                            <th>Ngày tạo</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên khách sạn</th>
+                            <th>Số lượng phòng</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Ghi chú</th>
+                            <th>Ngày tạo</th>`
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            danhsachkhachsan();
+            $(document).on('click', '#submitBtnks', function () {
+                themkhachsan();
+            });
+        });
+        function danhsachkhachsan()
+        {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Khachsan/Danhsachkhachsan",
+                success: function (response) {
+                    if (response.success) {
+                        var data = response.data;
+                        var html = "";
+                        console.log(data);
+                        $.each(data, function (i, item) {
+                            html += "<tr>";
+                            html += "<td>" + (i + 1) + "</td>";
+                            html += "<td>" + item.ten_Khachsan + "</td>";
+                            html += "<td>" + item.soluongphong + "</td>";
+                            html += "<td>" + item.diachi + "</td>";
+                            html += "<td>" + item.sdt + "</td>";
+                            html += "<td>" + item.website + "</td>";
+                            html += "<td>" + item.email + "</td>";
+                            html += "<td>" + item.ghichu + "</td>";
+                            html += "<td>" + item.ngaytao.split('T')[0] + "</td>";
+                            html += "<td><button class='btn btn-danger'>Xóa</button></td>";
+                            html += "<td><button class='btn btn-warning'>Sửa</button></td>";
+                            html += "</tr>";
+                        });
+                        $("#dataTable tbody").html(html);
+                    } else {
+                        Swal.fire({
+                            title: "Danh sách khách sạn",
+                            text: response.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Lỗi",
+                        text: `Lỗi: ${error}. Mã trạng thái: ${xhr.status}`,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        function themkhachsan() {
+            var form = $('#formthemkhachsan')[0];
+            var data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Khachsan/Themkhachsan", // Thêm dấu phẩy ',' ở cuối
+                data: data,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: "Loading...",
+                        text: "Please wait",
+                        imageUrl: "https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+                        imageWidth: 100,
+                        imageHeight: 100,
+                        imageAlt: "Loading",
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                    });
+                },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Thêm khách sạn",
+                            text: response.message,
+                            icon: "success"
+                        });
+                        $("#Themkhachsan").modal('hide');
+                        form.reset();
+                        danhsachkhachsan();
+                    } else {
+                        Swal.fire({
+                            title: "Thêm khách sạn",
+                            text: response.message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Lỗi",
+                        text: `Lỗi: ${error}. Mã trạng thái: ${xhr.status}`,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+    </script>
+}   
