@@ -30,6 +30,10 @@ namespace WebBookingHotel.Controllers
         {
             return View();
         }
+        public IActionResult SignUp()
+        {
+            return View();
+        }
 
 
         public IActionResult Booking()
