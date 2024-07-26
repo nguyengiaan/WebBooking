@@ -64,6 +64,7 @@ namespace WebBookingHotel.Service.Responser
                 {
                     await _userManager.AddToRoleAsync(userRegister, taikhoan.Role);
                 }
+
                 Status.StatusCode = 1;
                 Status.Message = "Đăng ký thành công";
                 return Status;
@@ -76,5 +77,7 @@ namespace WebBookingHotel.Service.Responser
             }
             return new Status { StatusCode = 0, Message = "Đăng ký thất bại" };
         }
+
     }
+
 }

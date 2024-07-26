@@ -1,0 +1,100 @@
+﻿@model WebBookingHotel.Models.EnityVM.DangnhapVM
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+
+<form id="loginForm" asp-controller="Nguoidung" asp-action="Dangnhap" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="form-check">
+            <input asp-for="RememberMe" class="form-check-input" />
+            <label asp-for="RememberMe" class="form-check-label"></label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+</form>
+
+<!-- Modal for success message -->
+<div id="successModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#successMessage').text(response.message);
+                            $('#successModal').modal('show');
+
+                            // Tự động chuyển hướng sau khi modal đóng
+                            $('#successModal').on('hidden.bs.modal', function () {
+                                // Thay đổi URL ở đây nếu cần
+                                window.location.href = '@Url.Action("Booking", "Home")';
+                            });
+
+                            // Đảm bảo rằng modal được đóng sau một khoảng thời gian nhất định
+                            setTimeout(function () {
+                                $('#successModal').modal('hide');
+                            }, 3000); // 3000 milliseconds = 3 seconds
+                        } else {
+                            // Hiển thị lỗi nếu đăng nhập không thành công
+                            alert('Đăng nhập không thành công: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Đã xảy ra lỗi: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+}
+

@@ -1,78 +1,187 @@
-﻿@{
-    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+﻿@model WebBookingHotel.Models.EnityVM.TaikhoanVM
+
+@{
+    ViewData["Title"] = "Đăng ký";
 }
+<style>
+    /* Căn giữa form trên màn hình */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Chiều cao toàn màn hình */
+        margin: 0;
+        background-color: #f8f9fa; /* Màu nền nhẹ để dễ nhìn hơn */
+    }
+
+    /* Tạo căn giữa cho form và thiết lập chiều rộng */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; /* Đảm bảo các thành phần chiếm toàn bộ chiều rộng của form */
+        max-width: 600px; /* Đặt chiều rộng tối đa của form */
+        width: 100%; /* Đảm bảo form không vượt quá chiều rộng của màn hình nhỏ */
+        padding: 20px; /* Thêm khoảng cách bên trong form */
+        background-color: #fff; /* Màu nền trắng cho form */
+        border-radius: 8px; /* Góc bo tròn cho form */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ cho form */
+    }
+
+    /* Đảm bảo các nhóm input không có margin và padding mặc định */
+    .form-group {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+        /* Đặt mỗi nhóm input vào trong một cột */
+        .form-group > div {
+            flex: 1 1 calc(50% - 15px); /* Chiếm 50% chiều rộng với khoảng cách giữa các cột */
+            margin-right: 15px; /* Khoảng cách giữa các cột */
+        }
+
+            /* Đặt lại margin cho input cuối cùng trong mỗi hàng để không có khoảng cách bên phải */
+            .form-group > div:last-child {
+                margin-right: 0;
+            }
+
+        /* Căn chỉnh các label và input sao cho hợp lý */
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    /* Đảm bảo các input có cùng kích thước và căn chỉnh */
+    .form-control {
+        width: 100%;
+        box-sizing: border-box; /* Đảm bảo padding và border không làm tăng chiều rộng */
+    }
 
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Ký Tài Khoản</title>
-    <link rel="stylesheet" href="~/css/signup.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Đăng Ký Tài Khoản</h2>
 
-        <form class="register-form">
-            <div class="form-group">
-                <label for="fullname">Tên đầy đủ</label>
-                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Nhập tên đầy đủ" required>
-                <span class="text-danger"></span>
-            </div>
+</style>
+<h2>@ViewData["Title"]</h2>
 
-            <div class="form-group">
-                <label for="address">Địa chỉ</label>
-                <input type="text" id="address" name="address" class="form-control" placeholder="Nhập địa chỉ" required>
-                <span class="text-danger"></span>
-            </div>
+<form id="registrationForm" asp-action="Dangkythanhvien" asp-controller="Nguoidung" method="post">
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="fullname"></label>
+            <input asp-for="fullname" class="form-control" />
+            <span asp-validation-for="fullname" class="text-danger"></span>
+        </div>
 
-            <div class="form-group">
-                <label for="Country">Quốc gia</label>
-                <input type="text" id="Country" name="Country" class="form-control" placeholder="Nhập quốc gia" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="UserName">Tên đăng nhập</label>
-                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Nhập tên đăng nhập" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="Password">Mật khẩu</label>
-                <input type="password" id="Password" name="Password" class="form-control" placeholder="Nhập mật khẩu" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="EnterPassword">Nhập lại mật khẩu</label>
-                <input type="password" id="EnterPassword" name="EnterPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" class="form-control" placeholder="Nhập địa chỉ email" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="Phone">Số điện thoại</label>
-                <input type="tel" id="Phone" name="Phone" class="form-control" placeholder="Nhập số điện thoại" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="Role">Vai trò</label>
-                <input type="text" id="Role" name="Role" class="form-control" placeholder="Nhập vai trò" value="customer" required>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Đăng Ký</button>
-                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-            </div>
-
-        </form>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
     </div>
-</body>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="EnterPassword"></label>
+            <input asp-for="EnterPassword" type="password" class="form-control" />
+            <span asp-validation-for="EnterPassword" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="address"></label>
+            <input asp-for="address" class="form-control" />
+            <span asp-validation-for="address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Country"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Role"></label>
+            <input asp-for="Role" class="form-control" />
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+</form>
+
+
+<!-- Modal for success message -->
+<div id="successModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#registrationForm').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#successMessage').text(response.message);
+                            $('#successModal').modal('show');
+                        } else {
+                            // Handle validation errors
+                            alert('Đăng ký không thành công: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Đã xảy ra lỗi: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+}

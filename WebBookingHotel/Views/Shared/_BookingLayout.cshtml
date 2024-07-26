@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using WebBookingHotel.Models.Enitity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -234,10 +239,19 @@
                         <div class="col-md-4 desktop">
                             <div class="right">
                                 <div class="DN-DK">
-                                    <a href="Login"
-                                       id="dang-nhap">Đăng nhập</a>
-                                    <!-- <a href="#" id="dang-ky"></a> -->
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        var user = await UserManager.GetUserAsync(User);
+                                        <span>@user.fullname</span> <!-- Đảm bảo sử dụng `fullname` -->
+                                        <a href="@Url.Action("Logout", "Home")" id="dang-xuat">Đăng xuất</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login", "Home")" id="dang-nhap">Đăng nhập</a>
+                                    }
                                 </div>
+                            </div>
+
                                 <div class="language">
                                     <div class="dropdown">
                                         <a class="btn-lang"
@@ -298,6 +312,7 @@
     
     <div class="container">
         @RenderBody()
+        @RenderSection("Scripts", required: false)
     </div>
 </body>
 </html>
